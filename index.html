@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="compiled/flipclock.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+		<script src="compiled/flipclock.js"></script>	
+		<style>
+		* {
+			box-sizing: border-box;
+			margin:0;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="clock" style="margin:0 auto;width:620px;margin-top:calc(50vh - (100px / 2) );"></div>
+		
+		<script type="text/javascript">
+			var clock;
+
+			$(document).ready(function() {
+
+				// Grab the current date
+				var currentDate = new Date();
+
+				// Set some date in the past. In this case, it's always been since Jan 1
+				var nextDate  = new Date(2017, 1, 1);
+
+				// Calculate the difference in seconds between the future and current date
+				var diff = nextDate.getTime() / 1000 - currentDate.getTime() / 1000;
+
+				// Instantiate a coutdown FlipClock
+				clock = $('.clock').FlipClock(diff, {
+					countdown: true,
+					clockFace: 'DailyCounter',
+					language: 'sv-se'
+				});
+			});
+
+			// Refresh sync every hour
+			setTimeout(function() {
+				window.location.reload();
+			}, (60 * 60 * 1000));
+		</script>
+		
+	</body>
+</html>
